@@ -1,7 +1,8 @@
 BankmBanksm::Application.routes.draw do
-  resources :banksms
-
-  resources :bankms
+  root :to => 'bankms#index'
+  resources :bankms do
+    resources :banksms
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

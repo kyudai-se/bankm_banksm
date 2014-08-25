@@ -9,7 +9,7 @@ class CreateBanksms < ActiveRecord::Migration
       t.string  "edtclt",   limit: 20, default: "", null: false
       t.decimal "bank_cd",  precision: 4, scale: 0, default: 0,  null: false
       t.decimal "banks_cd", precision: 3, scale: 0, default: 0,  null: false
-      t.decimal "bank_ed",  precision: 1, scale: 0, default: 0,  null: false
+      t.decimal "banks_ed",  precision: 1, scale: 0, default: 0,  null: false
       t.string  "banks_j",  limit: 40, default: "", null: false
       t.string  "banks_a",  limit: 40, default: "", null: false
       t.string  "banks_k",  limit: 40, default: "", null: false

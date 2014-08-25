@@ -29,7 +29,7 @@
         <td><%= bankm.bank_j %></td>
         <td><%= bankm.bank_a %></td>
         <td><%= bankm.bank_k %></td>
-        <td><%= link_to '支店確認', bankm %></td>
+        <td><%= link_to '支店確認', [ bankm, :banksms ] %></td>
         <td><%= link_to '編集', edit_bankm_path(bankm) %></td>
         <td><%= link_to '削除', bankm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

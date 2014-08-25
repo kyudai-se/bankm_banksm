@@ -4,7 +4,7 @@ class BankmsController < ApplicationController
   # GET /bankms
   # GET /bankms.json
   def index
-    @bankms = Bankm.all
+    @bankms = Bankm.order("bank_cd")
   end
 
   # GET /bankms/1
@@ -69,6 +69,6 @@ class BankmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bankm_params
-      params[:bankm]
+      params.require(:bankm).permit(:entdate, :entmcn, :entclt, :edtdate, :edtmcn, :edtclt, :bank_cd, :bank_j, :bank_a, :bank_k)
     end
 end

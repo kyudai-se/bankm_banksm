@@ -33,14 +33,11 @@
         <td><%= banksm.banks_j %></td> 
         <td><%= banksm.banks_a %></td> 
         <td><%= banksm.banks_k %></td>
-        <td><%= link_to 'Show', banksm %></td>
-        <td><%= link_to 'Edit', edit_banksm_path(banksm) %></td>
-        <td><%= link_to 'Destroy', banksm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '参照', [ @bankm, banksm ] %></td>
+        <td><%= link_to '編集', edit_bankm_banksm_path(@bankm, banksm) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Banksm', new_banksm_path %>

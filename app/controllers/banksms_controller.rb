@@ -4,12 +4,15 @@ class BanksmsController < ApplicationController
   # GET /banksms
   # GET /banksms.json
   def index
-    @banksms = Banksm.all
+    @bankm = Bankm.find(params[:bankm_id])
+    @banksms = @bankm.banksms.order("bank_cd, banks_cd, banks_ed")
   end
 
   # GET /banksms/1
   # GET /banksms/1.json
   def show
+    @bankm = Bankm.find(params[:bankm_id])
+    @banksm = @bankm.banksms.find(params[:id])
   end
 
   # GET /banksms/new
@@ -19,6 +22,8 @@ class BanksmsController < ApplicationController
 
   # GET /banksms/1/edit
   def edit
+    @bankm = Bankm.find(params[:bankm_id])
+    @banksm = @bankm.banksms.find(params[:id])
   end
 
   # POST /banksms
@@ -69,6 +74,6 @@ class BanksmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def banksm_params
-      params[:banksm]
+      params.require(:banksm).permit(:entdate, :entmcn, :entclt, :edtdate, :edtmcn, :edtclt, :bank_cd, :banks_cd, :banks_ed, :banks_j, :banks_a, :banks_k)
     end
 end
