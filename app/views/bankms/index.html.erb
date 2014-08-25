@@ -1,0 +1,42 @@
+<h1>Listing bankms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>登録日時</th>
+      <th>登録マシン</th>
+      <th>登録ユーザー</th>
+      <th>更新日時</th>
+      <th>更新マシン</th>
+      <th>更新ユーザー</th>
+      <th>銀行コード</th>
+      <th>銀行名</th>
+      <th>銀行名（略称）</th>
+      <th>銀行名（カナ）</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bankms.each do |bankm| %>
+      <tr>
+        <td><%= bankm.entdate.to_s(:db) %></td>
+        <td><%= bankm.entmcn %></td>
+        <td><%= bankm.entclt %></td>
+        <td><%= bankm.edtdate.try(:strftime,'%Y-%m-%d %H:%M:%S') %></td>
+        <td><%= bankm.edtmcn %></td>
+        <td><%= bankm.edtclt %></td>
+        <td><%= number_with_precision(bankm.bank_cd, precision: 0) %></td>
+        <td><%= bankm.bank_j %></td>
+        <td><%= bankm.bank_a %></td>
+        <td><%= bankm.bank_k %></td>
+        <td><%= link_to '支店確認', bankm %></td>
+        <td><%= link_to '編集', edit_bankm_path(bankm) %></td>
+        <td><%= link_to '削除', bankm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新規登録', new_bankm_path %>

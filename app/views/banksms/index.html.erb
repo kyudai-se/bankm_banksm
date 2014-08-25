@@ -1,0 +1,46 @@
+<h1>Listing banksms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>登録日時</th> 
+      <th>登録マシン</th> 
+      <th>登録ユーザー</th> 
+      <th>更新日時</th> 
+      <th>更新マシン</th> 
+      <th>更新ユーザー</th> 
+      <th>銀行コード</th>
+      <th>銀行支店コード</th>
+      <th>銀行支店枝番</th>
+      <th>銀行名</th> 
+      <th>銀行名（略称）</th> 
+      <th>銀行名（カナ）</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @banksms.each do |banksm| %>
+      <tr>
+        <td><%= banksm.entdate.to_s(:db) %></td> 
+        <td><%= banksm.entmcn %></td> 
+        <td><%= banksm.entclt %></td> 
+        <td><%= banksm.edtdate.try(:strftime,'%Y-%m-%d %H:%M:%S') %></td> 
+        <td><%= banksm.edtmcn %></td> 
+        <td><%= banksm.edtclt %></td> 
+        <td><%= number_with_precision(banksm.bank_cd, precision: 0) %></td>
+        <td><%= number_with_precision(banksm.banks_cd, precision: 0) %></td>
+        <td><%= number_with_precision(banksm.banks_ed, precision: 0) %></td>
+        <td><%= banksm.banks_j %></td> 
+        <td><%= banksm.banks_a %></td> 
+        <td><%= banksm.banks_k %></td>
+        <td><%= link_to 'Show', banksm %></td>
+        <td><%= link_to 'Edit', edit_banksm_path(banksm) %></td>
+        <td><%= link_to 'Destroy', banksm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Banksm', new_banksm_path %>

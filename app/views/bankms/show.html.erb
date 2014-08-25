@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>登録日時:</strong>
+  <%= @bankm.entdate.to_s(:db) %>
+</p>
+
+<p>
+  <strong>登録マシン:</strong>
+  <%= @bankm.entmcn %>
+</p>
+
+<p>
+  <strong>登録ユーザー:</strong>
+  <%= @bankm.entclt %>
+</p>
+
+<p>
+  <strong>更新日時:</strong>
+  <%= @bankm.edtdate.try(:strftime,'%Y-%m-%d %H:%M:%S') %>
+</p>
+
+<p>
+  <strong>更新マシン:</strong>
+  <%= @bankm.edtmcn %>
+</p>
+
+<p>
+  <strong>更新ユーザー:</strong>
+  <%= @bankm.edtclt %>
+</p>
+
+<p>
+  <strong>銀行コード:</strong>
+  <%= number_with_precision(@bankm.bank_cd, precision: 0) %>
+</p>
+
+<p>
+  <strong>銀行名:</strong>
+  <%= @bankm.bank_j %>
+</p>
+
+<p>
+  <strong>銀行名(略称):</strong>
+  <%= @bankm.bank_a %>
+</p>
+
+<p>
+  <strong>銀行名(カナ):</strong>
+  <%= @bankm.bank_k %>
+</p>
+
+<%= link_to 'Edit', edit_bankm_path(@bankm) %> |
+<%= link_to 'Back', bankms_path %>
