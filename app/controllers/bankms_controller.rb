@@ -1,3 +1,4 @@
+require 'date'
 class BankmsController < ApplicationController
   before_action :set_bankm, only: [:show, :edit, :update, :destroy]
 
@@ -25,7 +26,7 @@ class BankmsController < ApplicationController
   # POST /bankms.json
   def create
     @bankm = Bankm.new(bankm_params)
-
+    @bankm.entdate = Time.now
     respond_to do |format|
       if @bankm.save
         format.html { redirect_to @bankm, notice: 'Bankm was successfully created.' }
@@ -40,6 +41,7 @@ class BankmsController < ApplicationController
   # PATCH/PUT /bankms/1
   # PATCH/PUT /bankms/1.json
   def update
+    @bankm.edtdate = Time.now
     respond_to do |format|
       if @bankm.update(bankm_params)
         format.html { redirect_to @bankm, notice: 'Bankm was successfully updated.' }

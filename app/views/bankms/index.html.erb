@@ -19,7 +19,7 @@
   <tbody>
     <% @bankms.each do |bankm| %>
       <tr>
-        <td><%= bankm.entdate.to_s(:db) %></td>
+        <td><%= bankm.entdate.try(:strftime,'%Y-%m-%d %H:%M:%S') %></td>
         <td><%= bankm.entmcn %></td>
         <td><%= bankm.entclt %></td>
         <td><%= bankm.edtdate.try(:strftime,'%Y-%m-%d %H:%M:%S') %></td>

@@ -17,7 +17,8 @@ class BanksmsController < ApplicationController
 
   # GET /banksms/new
   def new
-    @banksm = Banksm.new
+    @bankm = Bankm.find(params[:bankm_id])
+    @banksm = @bankm.banksms.build
   end
 
   # GET /banksms/1/edit
@@ -29,11 +30,12 @@ class BanksmsController < ApplicationController
   # POST /banksms
   # POST /banksms.json
   def create
-    @banksm = Banksm.new(banksm_params)
+    @bankm = Bankm.find(params[:bankm_id])
+    @banksm = @bankm.banksms.new(params[:banksm])
 
     respond_to do |format|
       if @banksm.save
-        format.html { redirect_to @banksm, notice: 'Banksm was successfully created.' }
+        format.html { redirect_to bankm_url(@banksm), notice: 'Banksm was successfully created.' }
         format.json { render action: 'show', status: :created, location: @banksm }
       else
         format.html { render action: 'new' }
@@ -45,6 +47,8 @@ class BanksmsController < ApplicationController
   # PATCH/PUT /banksms/1
   # PATCH/PUT /banksms/1.json
   def update
+    @bankm = Bankm.find(params[:bankm_id])
+    @banksm = @bankm.banksms.find(params[:id])
     respond_to do |format|
       if @banksm.update(banksm_params)
         format.html { redirect_to @banksm, notice: 'Banksm was successfully updated.' }
@@ -59,6 +63,8 @@ class BanksmsController < ApplicationController
   # DELETE /banksms/1
   # DELETE /banksms/1.json
   def destroy
+    @bankm = Bankm.find(params[:bankm_id])
+    @bankms = @bankm.banksms.find(params[:id])
     @banksm.destroy
     respond_to do |format|
       format.html { redirect_to banksms_url }

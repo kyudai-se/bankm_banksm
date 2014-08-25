@@ -1,4 +1,4 @@
-<%= form_for [@bankm, @banksm] do |f| %>
+<%= form_for ([@bankm, @banksm]) do |f| %>
   <% if @banksm.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@banksm.errors.count, "error") %> prohibited this banksm from being saved:</h2>

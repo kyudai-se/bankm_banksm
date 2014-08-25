@@ -35,9 +35,12 @@
         <td><%= banksm.banks_k %></td>
         <td><%= link_to '参照', [ @bankm, banksm ] %></td>
         <td><%= link_to '編集', edit_bankm_banksm_path(@bankm, banksm) %></td>
+        <td><%= link_to '削除', [@bankm, banksm], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+<%= link_to '新規登録', new_bankm_banksm_path %>
