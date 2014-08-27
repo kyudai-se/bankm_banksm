@@ -2,7 +2,7 @@
 
 <p>
   <strong>登録日時:</strong>
-  <%= @bankm.entdate.to_s(:db) %>
+  <%= @bankm.entdate.try(:strftime,'%Y-%m-%d %H:%M:%S') %>
 </p>
 
 <p>

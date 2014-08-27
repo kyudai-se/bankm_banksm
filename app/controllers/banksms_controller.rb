@@ -1,3 +1,4 @@
+require 'date'
 class BanksmsController < ApplicationController
   before_action :set_banksm, only: [:show, :edit, :update, :destroy]
 
@@ -31,12 +32,13 @@ class BanksmsController < ApplicationController
   # POST /banksms.json
   def create
     @bankm = Bankm.find(params[:bankm_id])
-    @banksm = @bankm.banksms.new(params[:banksm])
-
+    @banksm = @bankm.banksms.new(banksm_params)
+    @banksm.bank_cd = @bankm.bank_cd
+    @banksm.entdate = Time.now
     respond_to do |format|
       if @banksm.save
-        format.html { redirect_to bankm_url(@banksm), notice: 'Banksm was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @banksm }
+        format.html { redirect_to bankm_banksm_url(@bankm, @banksm), notice: 'Banksm was successfully created.' }
+        format.json { render json: @banksm, status: :created, location: @banksm }
       else
         format.html { render action: 'new' }
         format.json { render json: @banksm.errors, status: :unprocessable_entity }
@@ -49,9 +51,10 @@ class BanksmsController < ApplicationController
   def update
     @bankm = Bankm.find(params[:bankm_id])
     @banksm = @bankm.banksms.find(params[:id])
+    @banksm.edtdate = Time.now
     respond_to do |format|
       if @banksm.update(banksm_params)
-        format.html { redirect_to @banksm, notice: 'Banksm was successfully updated.' }
+        format.html { redirect_to bankm_banksm_url(@bankm, @banksm), notice: 'Banksm was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -64,10 +67,10 @@ class BanksmsController < ApplicationController
   # DELETE /banksms/1.json
   def destroy
     @bankm = Bankm.find(params[:bankm_id])
-    @bankms = @bankm.banksms.find(params[:id])
+    @banksm = @bankm.banksms.find(params[:id])
     @banksm.destroy
     respond_to do |format|
-      format.html { redirect_to banksms_url }
+      format.html { redirect_to bankm_banksms_url }
       format.json { head :no_content }
     end
   end

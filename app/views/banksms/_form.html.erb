@@ -26,10 +26,6 @@
      <%= f.label :更新ユーザー %><br> 
      <%= f.text_field :edtclt %> 
    </div> 
-   <div class="field"> 
-     <%= f.label :銀行コード %><br> 
-     <%= f.text_field number_with_precision(:bank_cd, precision: 0), {style: "ime-mode:disabled"} %> 
-   </div>
    <div class="field">
      <%= f.label :銀行支店コード %><br>
      <%= f.text_field number_with_precision(:banks_cd, precision: 0), {style: "ime-mode:disabled"} %>
@@ -39,15 +35,15 @@
      <%= f.text_field number_with_precision(:banks_ed, precision: 0), {style: "ime-mode:disabled"} %>
    </div>
    <div class="field"> 
-     <%= f.label :銀行名 %><br> 
+     <%= f.label :支店名 %><br> 
      <%= f.text_field :banks_j %> 
    </div> 
    <div class="field"> 
-     <%= f.label :銀行名（略称） %><br> 
+     <%= f.label :支店名（略称） %><br> 
      <%= f.text_field :banks_a %> 
    </div> 
    <div class="field"> 
-     <%= f.label :銀行名（カナ） %><br> 
+     <%= f.label :支店名（カナ） %><br> 
      <%= f.text_field :banks_k %> 
    </div>
 

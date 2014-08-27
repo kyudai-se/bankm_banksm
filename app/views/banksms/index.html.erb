@@ -1,4 +1,4 @@
-<h1>Listing banksms</h1>
+<h1>支店一覧</h1>
 
 <table>
   <thead>
@@ -12,16 +12,16 @@
       <th>銀行コード</th>
       <th>銀行支店コード</th>
       <th>銀行支店枝番</th>
-      <th>銀行名</th> 
-      <th>銀行名（略称）</th> 
-      <th>銀行名（カナ）</th>
+      <th>支店名</th> 
+      <th>支店名（略称）</th> 
+      <th>支店名（カナ）</th>
     </tr>
   </thead>
 
   <tbody>
     <% @banksms.each do |banksm| %>
       <tr>
-        <td><%= banksm.entdate.to_s(:db) %></td> 
+        <td><%= banksm.entdate.try(:strftime,'%Y-%m-%d %H:%M:%S') %></td> 
         <td><%= banksm.entmcn %></td> 
         <td><%= banksm.entclt %></td> 
         <td><%= banksm.edtdate.try(:strftime,'%Y-%m-%d %H:%M:%S') %></td> 
@@ -43,4 +43,5 @@
 
 <br>
 
-<%= link_to '新規登録', new_bankm_banksm_path %>
+<%= link_to '支店新規登録', new_bankm_banksm_path %>
+<%= link_to '銀行一覧に戻る', bankms_url %>
