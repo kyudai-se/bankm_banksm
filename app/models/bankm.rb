@@ -4,7 +4,6 @@ class Bankm < ActiveRecord::Base
   has_many :banksms, foreign_key: [:bank_cd], dependent: :delete_all
   accepts_nested_attributes_for :banksms
   attr_accessible :banksms_attributes
-
   attr_accessible :entdate, :entmcn, :entclt, :edtdate, :edtmcn, :edtclt,
                   :bank_cd, :bank_j, :bank_a, :bank_k
   before_validation { self.bank_k  = NKF.nkf('-w -Z4 -x', bank_k) }

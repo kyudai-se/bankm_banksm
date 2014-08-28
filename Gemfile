@@ -33,6 +33,8 @@ gem 'rb-readline', '~> 0.4.2'
 
 gem 'protected_attributes'
 
+gem 'kaminari'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
