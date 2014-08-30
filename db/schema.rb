@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825012349) do
+ActiveRecord::Schema.define(version: 20140830042039) do
 
   create_table "aream", force: true do |t|
     t.datetime "entdate"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20140825012349) do
   end
 
   add_index "banksms", ["bank_cd", "banks_cd", "banks_ed"], name: "index_banksms_on_bank_cd_and_banks_cd_and_banks_ed", unique: true, using: :btree
+  add_index "banksms", ["bank_cd", "banks_j"], name: "index_banksms_on_bank_cd_and_banks_j", unique: true, using: :btree
 
   create_table "lineups", force: true do |t|
     t.integer  "bankm_id"

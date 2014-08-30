@@ -33,7 +33,13 @@ gem 'rb-readline', '~> 0.4.2'
 
 gem 'protected_attributes'
 
-gem 'kaminari'
+gem 'rspec-rails'
+
+gem 'factory_girl_rails'
+
+gem 'better_errors'
+
+gem 'binding_of_caller'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
