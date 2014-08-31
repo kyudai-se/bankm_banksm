@@ -10,13 +10,12 @@ ja:
       bank_cd:  "銀行コード"
       banks_cd: "銀行支店コード"
       banks_ed: "銀行支店枝番"
-      banks_j:  "銀行名"
+      banks_j:  "支店名"
       bank_j:   "銀行名"
-      banks_a:  "銀行名(略称)"
+      banks_a:  "支店名(略称)"
       bank_a:   "銀行名(略称)"
-      banks_k:  "銀行名(カナ)"
+      banks_k:  "支店名(カナ)"
       bank_k:   "銀行名(カナ)"
-
   date:
     abbr_day_names:
     - 日
