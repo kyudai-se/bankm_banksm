@@ -51,9 +51,6 @@ class BanksmsController < ApplicationController
   def update
     @bankm = Bankm.find(params[:bankm_id])
     @banksm = @bankm.banksms.find(params[:id])
-    @banksm.bank_cd_copy = @banksm.bank_cd
-    @banksm.banks_cd_copy = @banksm.banks_cd
-    @banksm.banks_ed_copy = @banksm.banks_ed
     @banksm.edtdate = Time.now
     respond_to do |format|
       if @banksm.update(banksm_params)
@@ -62,9 +59,6 @@ class BanksmsController < ApplicationController
       else
         format.html { render action: 'edit' }
         format.json { render json: @banksm.errors, status: :unprocessable_entity }
-        @banksm.bank_cd = @banksm.bank_cd_copy
-        @banksm.banks_cd = @banksm.banks_cd_copy
-        @banksm.banks_ed = @banksm.banks_ed_copy
       end
     end
   end

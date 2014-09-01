@@ -21,6 +21,6 @@ class Banksm < ActiveRecord::Base
              format: { with: /\A[\p{Han}\p{Hiragana}\p{Katakana}A-Za-zＡ-Ｚ-ー]+\z/, allow_blank: true, message: 'はアルファベット、漢字、ひらがな、カタカナのいずれかで入力してください' }  
   validates :banks_k,  presence: true, length: { maximum: 40 },
              format: { with: /\A[A-Za-zＡ-Ｚ\p{Katakana}\ﾞ\u30fc-]+\z/, allow_blank: true, message: 'はアルファベットかカタカナで入力してください' }
-#validates_uniqueness_of :bank_cd, :scope => :banks_j, message: 'にこの支店は既に登録されています'
-#validates_uniqueness_of :banks_cd, :scope => :banks_ed, message: 'と支店枝番は既にこの銀行に登録されています。'
+  validates_uniqueness_of :bank_cd, :scope => :banks_j, message: 'にこの支店は既に登録されています'
+  validates :bank_cd, :uniqueness => {:scope => [:banks_cd, :banks_ed], message: 'と支店枝番は既にこの銀行コードに登録されています' }
 end

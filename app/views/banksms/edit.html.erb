@@ -1,6 +1,50 @@
 <h1>Editing banksm</h1>
 
-<%= render 'form' %>
+<%= form_for ([@bankm, @banksm]) do |f| %>
+  <% if @banksm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@banksm.errors.count, "error") %> prohibited this banksm from being saved:</h2>
+
+      <ul>
+      <% @banksm.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field"> 
+     <%= f.label :登録マシン %><br> 
+     <%= f.text_field :entmcn %> 
+   </div> 
+   <div class="field"> 
+     <%= f.label :登録ユーザー %><br> 
+     <%= f.text_field :entclt %> 
+   </div> 
+   <div class="field"> 
+     <%= f.label :更新マシン %><br> 
+     <%= f.text_field :edtmcn %> 
+   <div class="field"> 
+     <%= f.label :更新ユーザー %><br> 
+     <%= f.text_field :edtclt %> 
+   </div>
+   <div class="field"> 
+     <%= f.label :支店名 %><br> 
+     <%= f.text_field :banks_j %> 
+   </div> 
+   <div class="field"> 
+     <%= f.label :支店名（略称） %><br> 
+     <%= f.text_field :banks_a %> 
+   </div> 
+   <div class="field"> 
+     <%= f.label :支店名（カナ） %><br> 
+     <%= f.text_field :banks_k %> 
+   </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <%= link_to '詳細', bankm_banksm_path %> |
 <%= link_to '支店一覧に戻る', bankm_banksms_path %>
