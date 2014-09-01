@@ -52,11 +52,17 @@ class BanksmsController < ApplicationController
     @bankm = Bankm.find(params[:bankm_id])
     @banksm = @bankm.banksms.find(params[:id])
     @banksm.edtdate = Time.now
+    @banksm.bank_cd_copy = @banksm.bank_cd
+    @banksm.banks_cd_copy = @banksm.banks_cd
+    @banksm.banks_ed_copy = @banksm.banks_ed
     respond_to do |format|
       if @banksm.update(banksm_params)
         format.html { redirect_to bankm_banksm_url(@bankm, @banksm), notice: 'Banksm was successfully updated.' }
         format.json { head :no_content }
       else
+        @banksm.bank_cd = @banksm.bank_cd_copy
+        @banksm.banks_cd = @banksm.banks_cd_copy
+        @banksm.banks_ed = @banksm.banks_ed_copy
         format.html { render action: 'edit' }
         format.json { render json: @banksm.errors, status: :unprocessable_entity }
       end
