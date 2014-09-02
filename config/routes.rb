@@ -1,5 +1,5 @@
 BankmBanksm::Application.routes.draw do
-  root :to => 'bankms#index'
+  root :to => 'bankms#search'
   resources :bankms do
     resources :banksms
   end

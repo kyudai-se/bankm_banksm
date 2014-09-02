@@ -1,11 +1,11 @@
 require 'nkf'
 class Bankm < ActiveRecord::Base
 
-  def self.search(search) #self.でクラスメソッドとしている
+  def self.search(search)
     if search
       Bankm.where(['bank_j LIKE ?', "%#{search}%"])
     else
-      Bankm.all #全て表示。
+      Bankm.order("bank_cd")
     end
   end
 
