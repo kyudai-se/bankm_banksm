@@ -1,5 +1,13 @@
 <h1>銀行一覧</h1>
 
+<%= form_tag bankms_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :bank_j => nil %>
+  </p>
+<% end %>
+
+
 <table>
   <thead>
     <tr>

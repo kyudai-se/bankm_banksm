@@ -1,5 +1,14 @@
 require 'nkf'
 class Bankm < ActiveRecord::Base
+
+  def self.search(search) #self.でクラスメソッドとしている
+    if search
+      Bankm.where(['bank_j LIKE ?', "%#{search}%"])
+    else
+      Bankm.all #全て表示。
+    end
+  end
+
   self.primary_key = :bank_cd
   has_many :banksms, foreign_key: [:bank_cd], dependent: :delete_all
   accepts_nested_attributes_for :banksms
