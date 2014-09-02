@@ -1,4 +1,4 @@
-<h1>Editing bankm</h1>
+<h1>編集フォーム</h1>
 
 <%= form_for(@bankm) do |f| %>
   <% if @bankm.errors.any? %>
@@ -46,5 +46,5 @@
   </div>
 <% end %>
 
-<%= link_to 'Show', @bankm %> |
-<%= link_to 'Back', bankms_path %>
+<%= link_to '詳細', @bankm %> |
+<%= link_to '銀行一覧に戻る', bankms_path %>
