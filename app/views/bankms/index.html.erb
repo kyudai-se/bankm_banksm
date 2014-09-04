@@ -1,4 +1,4 @@
-<h1>銀行一覧</h1>
+<h1>検索結果</h1>
 <table>
   <thead>
     <tr>
@@ -39,4 +39,4 @@
 <br>
 
 <%= link_to '検索に戻る', root_path %> |
-<%= link_to '銀行新規登録', new_bankm_path %>
+<%= link_to '銀行新規登録', new_bankm_path(:search => params[:search]) %>

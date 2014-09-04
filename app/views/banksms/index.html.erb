@@ -33,8 +33,8 @@
         <td><%= banksm.banks_j %></td> 
         <td><%= banksm.banks_a %></td> 
         <td><%= banksm.banks_k %></td>
-        <td><%= link_to '詳細', [ @bankm, banksm ] %></td>
-        <td><%= link_to '編集', edit_bankm_banksm_path(@bankm, banksm) %></td>
+        <td><%= link_to '詳細', bankm_banksm_path(@bankm, banksm, :search => params[:search]) %></td>
+        <td><%= link_to '編集', edit_bankm_banksm_path(@bankm, banksm, :search => params[:search]) %></td>
         <td><%= link_to '削除', [@bankm, banksm], method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
       </tr>
     <% end %>
@@ -43,6 +43,6 @@
 
 <br>
 
-<%= link_to '支店新規登録', new_bankm_banksm_path %> |
+<%= link_to '支店新規登録', new_bankm_banksm_path(:search => params[:search]) %> |
 <%= link_to '検索結果に戻る', bankms_path(:search => params[:search]) %> |
 <%= link_to '検索に戻る', bankms_url %>
