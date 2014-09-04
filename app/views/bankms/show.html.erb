@@ -50,6 +50,7 @@
   <%= @bankm.bank_k %>
 </p>
 
-<%= link_to '編集', edit_bankm_path(@bankm) %> |
+<%= link_to '編集', edit_bankm_path(@bankm, :search => params[:search]) %> |
 <%= link_to '検索に戻る', root_path %> |
+<%= link_to '検索結果に戻る', bankms_path(:search => params[:search]) %> |
 <%= link_to '支店一覧', bankm_banksms_path(@bankm.bank_cd) %>

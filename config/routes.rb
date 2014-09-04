@@ -1,4 +1,5 @@
 BankmBanksm::Application.routes.draw do
+  get 'search' => 'bankms#search'
   root :to => 'bankms#search'
   resources :bankms do
     resources :banksms

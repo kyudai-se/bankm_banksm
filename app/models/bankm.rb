@@ -2,11 +2,7 @@ require 'nkf'
 class Bankm < ActiveRecord::Base
 
   def self.search(search)
-    if search
       Bankm.where(['bank_j LIKE ?', "%#{search}%"])
-    else
-      Bankm.order("bank_cd")
-    end
   end
 
   self.primary_key = :bank_cd
@@ -14,7 +10,7 @@ class Bankm < ActiveRecord::Base
   accepts_nested_attributes_for :banksms
   attr_accessible :banksms_attributes
   attr_accessible :entdate, :entmcn, :entclt, :edtdate, :edtmcn, :edtclt,
-                  :bank_cd, :bank_j, :bank_a, :bank_k
+                  :bank_cd, :bank_j, :bank_a, :bank_k, :bank_j_copy
   before_validation { self.bank_k  = NKF.nkf('-w -Z4 -x', bank_k) }
   validates :entmcn,  length: { maximum: 20 }
   validates :entclt,  length: { maximum: 20 }
