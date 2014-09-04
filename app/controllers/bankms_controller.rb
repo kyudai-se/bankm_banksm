@@ -5,7 +5,7 @@ class BankmsController < ApplicationController
   # GET /bankms
   # GET /bankms.json
   def index
-    @bankms = Bankm.search(params[:search])
+    @bankms = Bankm.search(params[:search]).order('bank_cd')
   end
 
   # GET /bankms/1
