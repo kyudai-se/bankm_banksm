@@ -1,9 +1,12 @@
 <h1>銀行検索フォーム</h1>
 
 <%= form_tag bankms_path, :method => 'get' do %>
+  <%= select_tag :search,
+      options_for_select(Bankm.all.map{|bankm| ["#{bankm.bank_j}"]}),
+      class: "chosen-select" %>
   <p>
     <th>銀行名検索</th>
-    <%= text_field_tag :search, params[:search] %>
+    <%= text_field_tag :bank_j, params[:search] %>
     <%= submit_tag "検索" %>
   </p>
 <% end %>
