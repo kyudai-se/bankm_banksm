@@ -4,8 +4,8 @@
   <p>
     <th>銀行名検索フォーム</th>
     <%= select_tag :search,
-        options_for_select(Bankm.all.map{|bankm| ["#{bankm.bank_j}"]}),
-        { prompt: '未選択', class: "chosen-select" } %>
+        options_for_select(Bankm.find(:all, :order => "bank_cd").map{|bankm| ["#{bankm.bank_j}"]}),
+        { prompt: '', class: "chosen-select" } %>
     <%= submit_tag "検索" %>
   </p>
 <% end %>
