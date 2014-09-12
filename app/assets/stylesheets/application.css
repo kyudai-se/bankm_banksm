@@ -12,5 +12,6 @@
  *= require scaffolds.css
  *= require bankms.css
  *= require chosen.css
+ *= jquery-ui-1.8.2.custom.css
  *= require_tree .
  */

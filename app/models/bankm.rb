@@ -2,7 +2,7 @@ require 'nkf'
 class Bankm < ActiveRecord::Base
 
   def self.search(search)
-      Bankm.where(['bank_j LIKE ?', "%#{search}%"])
+   Bankm.where(['bank_j LIKE ?', "%#{search}%"])
   end
 
   self.primary_key = :bank_cd

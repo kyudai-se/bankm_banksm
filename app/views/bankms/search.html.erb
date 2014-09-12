@@ -1,9 +1,10 @@
 <h1>銀行検索フォーム</h1>
 
-<%= form_tag bankms_path, :method => 'get' do %>
+<%= form_tag bankms_path, :method => :get do %>
   <p>
-    <th>銀行名検索フォーム</th>
-    <%= text_field_tag :search, params[:search] %>
+    銀行名検索フォーム
+      <%= autocomplete_field_tag :search, params[:search],
+          autocomplete_bankm_bank_j_bankms_path, :autocomplete => "off" %>
     <%= submit_tag "検索" %>
   </p>
 <% end %>

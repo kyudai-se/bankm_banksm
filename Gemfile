@@ -45,6 +45,8 @@ gem 'compass-rails', '~> 2.0.alpha.0'
 
 gem 'chosen-rails'
 
+gem 'rails3-jquery-autocomplete'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
