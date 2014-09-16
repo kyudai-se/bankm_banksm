@@ -1,12 +1,13 @@
 <h1>銀行検索フォーム</h1>
 
+<div id="jquery-ui-autocomplete" class="ui-widget">
 <%= form_tag bankms_path, :method => :get do %>
   <p>
     銀行名検索フォーム
-      <%= autocomplete_field_tag :search, params[:search],
-          autocomplete_bankm_bank_j_bankms_path, :autocomplete => "off" %>
+    <%= autocomplete_field_tag :search, params[:search],
+        autocomplete_bankm_bank_j_bankms_path, :autocomplete => "off" %>
     <%= submit_tag "検索" %>
   </p>
 <% end %>
-
+</div>
 <%= link_to '銀行新規登録', new_bankm_path %>
