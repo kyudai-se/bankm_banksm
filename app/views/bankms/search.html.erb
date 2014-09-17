@@ -2,9 +2,16 @@
 
 <%= form_tag bankms_path, :method => :get do %>
   <p>
-    銀行名検索フォーム
+    名前検索フォーム
     <%= autocomplete_field_tag :search, params[:search],
         autocomplete_bankm_bank_j_bankms_path, :autocomplete => "off" %>
+    <%= submit_tag "検索" %>
+  </p>
+  <p>
+    番号検索フォーム
+    <%= select_tag :search,
+        options_for_select(Bankm.find(:all, :order => "bank_cd").map{ |bankm| [ "#{bankm.bank_cd}", bankm.id]}),
+        class: "chosen-select" %>
     <%= submit_tag "検索" %>
   </p>
 <% end %>

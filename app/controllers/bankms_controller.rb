@@ -5,15 +5,25 @@ class BankmsController < ApplicationController
                 :limit => 1000
 
   def auto_complete_for_bankm_bank_j
-   find_options = { 
-     :conditions => [ "bank_j LIKE ?", '%' + params[:bankm][:bank_j].downcase + '%' ], 
- :order => "bank_cd ASC",
- :limit => 1000
+    find_options = { 
+      :conditions => [ "bank_j LIKE ?",
+                       '%' + params[:bankm][:bank_j].downcase + '%' ], 
+      :order => "bank_cd ASC",
+      :limit => 1000
     }
- @bankms = Bankm.find(:all, find_options)
- render :partial => 'auto_complete_for_bank_J'
- end
+    @bankms = Bankm.find(:all, find_options)
+    render :partial => 'auto_complete_for_bank_J'
+  end
 
+  def bankm_search_cd
+   find_options = {
+      :conditions => [ "bank_cd LIKE ?",
+                       '%' + params[:bankm][:bank_cd].downcase + '%' ],
+      :order => "bank_cd ASC",
+      :limit => 1000
+    }
+    @bankms = Bankm.find(:all, find_options)
+  end
   # GET /bankms
   # GET /bankms.json
   def index
