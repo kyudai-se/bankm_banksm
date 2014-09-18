@@ -27,8 +27,10 @@ class BankmsController < ApplicationController
   # GET /bankms
   # GET /bankms.json
   def index
-    if !params[:search].blank? 
-      @bankms = Bankm.search(params[:search]).order('bank_cd')
+    if !params[:bank_j_search].blank? 
+      @bankms = Bankm.search(params[:bank_j_search]).order('bank_cd')
+    elsif !params[:bank_cd_search].blank?
+      @bankms = Bankm.search(params[:bank_cd_search]).order('bank_cd')
     else
       render action: 'search'
     end
