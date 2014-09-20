@@ -2,6 +2,12 @@ require 'date'
 class BanksmsController < ApplicationController
   before_action :set_banksm, only: [:show, :edit, :update, :destroy]
 
+ def bank_params
+    {:bank_j_search  => params[:bank_j_search],
+     :bank_cd_search => params[:bank_cd_search]}
+  end
+  helper_method :bank_params
+
   # GET /banksms
   # GET /banksms.json
   def index

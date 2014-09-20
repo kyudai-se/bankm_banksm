@@ -23,14 +23,26 @@ class BankmsController < ApplicationController
       :limit => 1000
     }
     @bankms = Bankm.find(:all, find_options)
+    render :partial => 'auto_complete_for_bank_CD'
   end
+
+  def bank_params
+    {:bank_j_search  => params[:bank_j_search],
+     :bank_cd_search => params[:bank_cd_search]}
+  end
+  helper_method :bank_params
+
   # GET /bankms
   # GET /bankms.json
   def index
-    if !params[:bank_j_search].blank? 
+    if !params[:bank_j_search].blank? && !params[:bank_cd_search].blank?
+      render action: 'search'
+    elsif !params[:bank_j_search].blank?
       @bankms = Bankm.search(params[:bank_j_search]).order('bank_cd')
     elsif !params[:bank_cd_search].blank?
       @bankms = Bankm.search(params[:bank_cd_search]).order('bank_cd')
+    elsif !params[:search].blank?
+      @bankms = Bankm.search(params[:search]).order('bank_cd')
     else
       render action: 'search'
     end
@@ -99,6 +111,9 @@ class BankmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bankm_params
-      params.require(:bankm).permit(:entdate, :entmcn, :entclt, :edtdate, :edtmcn, :edtclt, :bank_cd, :bank_j, :bank_a, :bank_k, :bank_j_copy)
+      params.require(:bankm).permit(:entdate, :entmcn, :entclt,
+                                    :edtdate, :edtmcn, :edtclt,
+                                    :bank_cd, :bank_j, :bank_a, :bank_k)
     end
 end
+

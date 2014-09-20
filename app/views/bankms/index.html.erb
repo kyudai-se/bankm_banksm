@@ -28,9 +28,9 @@
         <td><%= bankm.bank_j %></td>
         <td><%= bankm.bank_a %></td>
         <td><%= bankm.bank_k %></td>
-        <td><%= link_to '銀行詳細', bankm_path(bankm, :search => params[:search]) %></td>
-        <td><%= link_to '支店確認', bankm_banksms_path(bankm, :search => params[:search]) %></td>
-        <td><%= link_to '編集', edit_bankm_path(bankm, :search => params[:search]) %></td>
+        <td><%= link_to '銀行詳細', bankm_path(bankm, bank_params) %></td>
+        <td><%= link_to '支店確認', bankm_banksms_path(bankm, bank_params) %></td>
+        <td><%= link_to '編集', edit_bankm_path(bankm, bank_params) %></td>
         <td><%= link_to '削除', bankm, method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
       </tr>
     <% end %>
@@ -39,4 +39,4 @@
 <br>
 
 <%= link_to '検索に戻る', root_path %> |
-<%= link_to '銀行新規登録', new_bankm_path(:search => params[:search]) %>
+<%= link_to '銀行新規登録', new_bankm_path(bank_params) %>
