@@ -4,6 +4,7 @@ BankmBanksm::Application.routes.draw do
   resources :bankms do
     resources :banksms
     get :autocomplete_bankm_bank_j, :on => :collection
+    get :autocomplete_bankm_bank_cd, :on => :collection
     get 'search_cd' => 'bankms#search_cd'
   end
 

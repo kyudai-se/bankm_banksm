@@ -3,7 +3,8 @@ class BankmsController < ApplicationController
   before_action :set_bankm, only: [:show, :edit, :update, :destroy]
   autocomplete  :bankm, :bank_j, :full => true, :order => "bank_cd",
                 :limit => 1000
-
+  autocomplete  :bankm, :bank_cd, :full => true, :order => "bank_cd",
+                :limit => 1000
   def auto_complete_for_bankm_bank_j
     find_options = { 
       :conditions => [ "bank_j LIKE ?",
@@ -15,8 +16,8 @@ class BankmsController < ApplicationController
     render :partial => 'auto_complete_for_bank_J'
   end
 
-  def bankm_search_cd
-   find_options = {
+  def auto_complete_for_bankm_bank_cd
+    find_options = {
       :conditions => [ "bank_cd LIKE ?",
                        '%' + params[:bankm][:bank_cd].downcase + '%' ],
       :order => "bank_cd ASC",
@@ -36,9 +37,7 @@ class BankmsController < ApplicationController
   # GET /bankms.json
   def index
     if !params[:bank_j_search].blank? && !params[:bank_cd_search].blank?
-      @bankms = Bankm.where(["bank_j LIKE ? AND bank_cd LIKE ?",
-                             "%#{params[:bank_j_search]}%",
-                             "#{params[:bank_cd_search]}" ])
+      @bankms = Bankm.where(["bank_j LIKE ? AND bank_cd LIKE ?", "%#{params[:bank_j_search]}%", "%#{params[:bank_cd_search]}%"])
     else
       if !params[:bank_j_search].blank?
         @bankms = Bankm.search(params[:bank_j_search]).order('bank_cd')

@@ -9,9 +9,9 @@
   </p>
   <p>
     番号検索フォーム
-    <%= select_tag :bank_cd_search,
-        options_for_select(Bankm.find(:all).sort_by{|bankm| (bankm.bank_cd.to_i)}.map{ |bankm| [ "#{bankm.bank_cd}", bankm.id]}),
-       { prompt: "", class: "chosen-select" } %>
+    <%= autocomplete_field_tag :bank_cd_search, params[:bank_cd_search],
+        autocomplete_bankm_bank_cd_bankms_path, :autocomplete => "off",
+        :size => 5 %>
     <%= submit_tag "検索" %>
   </p>
 <% end %>
