@@ -36,15 +36,17 @@ class BankmsController < ApplicationController
   # GET /bankms.json
   def index
     if !params[:bank_j_search].blank? && !params[:bank_cd_search].blank?
-      render action: 'search'
-    elsif !params[:bank_j_search].blank?
-      @bankms = Bankm.search(params[:bank_j_search]).order('bank_cd')
-    elsif !params[:bank_cd_search].blank?
-      @bankms = Bankm.search(params[:bank_cd_search]).order('bank_cd')
-    elsif !params[:search].blank?
-      @bankms = Bankm.search(params[:search]).order('bank_cd')
+      @bankms = Bankm.where(["bank_j LIKE ? AND bank_cd LIKE ?",
+                             "%#{params[:bank_j_search]}%",
+                             "#{params[:bank_cd_search]}" ])
     else
-      render action: 'search'
+      if !params[:bank_j_search].blank?
+        @bankms = Bankm.search(params[:bank_j_search]).order('bank_cd')
+      elsif !params[:bank_cd_search].blank?
+        @bankms = Bankm.search(params[:bank_cd_search]).order('bank_cd')
+      else
+        render action: 'search'
+      end
     end
   end
 
