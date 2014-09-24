@@ -1,13 +1,15 @@
 require 'date'
 class BankmsController < ApplicationController
   before_action :set_bankm, only: [:show, :edit, :update, :destroy]
-  autocomplete  :bankm, :bank_j,  :full => true, :limit => 1000
-  autocomplete  :bankm, :bank_cd, :full => true, :limit => 1000
-              { :order => :bank_cd }
+  autocomplete  :bankm, :bank_j,  :full => true, :limit => 1000,
+                :order => :bank_cd
+  autocomplete  :bankm, :bank_cd, :full => true, :limit => 1000,
+                :order => :bank_cd
   def auto_complete_for_bankm_bank_j
     find_options = { 
       :conditions => [ "bank_j LIKE ?",
                        '%' + params[:bankm][:bank_j].downcase + '%' ], 
+      :order => :bank_cd,
       :limit => 1000
     }
     @bankms = Bankm.find(:all, find_options)
@@ -18,6 +20,7 @@ class BankmsController < ApplicationController
     find_options = {
       :conditions => [ "bank_cd LIKE ?",
                        '%' + params[:bankm][:bank_cd].downcase + '%' ],
+      :order => :bank_cd,
       :limit => 1000
     }
     @bankms = Bankm.find(:all, find_options)

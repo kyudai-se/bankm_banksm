@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904053011) do
+ActiveRecord::Schema.define(version: 20140924043154) do
 
   create_table "aream", force: true do |t|
     t.datetime "entdate"
@@ -49,21 +49,19 @@ ActiveRecord::Schema.define(version: 20140904053011) do
 
   create_table "bankms", id: false, force: true do |t|
     t.datetime "entdate"
-    t.string   "entmcn",      limit: 20,                         default: "", null: false
-    t.string   "entclt",      limit: 20,                         default: "", null: false
+    t.string   "entmcn",      limit: 20, default: "", null: false
+    t.string   "entclt",      limit: 20, default: "", null: false
     t.datetime "edtdate"
-    t.string   "edtmcn",      limit: 20,                         default: "", null: false
-    t.string   "edtclt",      limit: 20,                         default: "", null: false
-    t.decimal  "bank_cd",                precision: 4, scale: 0, default: 0,  null: false
-    t.string   "bank_j",      limit: 40,                         default: "", null: false
-    t.string   "bank_a",      limit: 40,                         default: "", null: false
-    t.string   "bank_k",      limit: 40,                         default: "", null: false
+    t.string   "edtmcn",      limit: 20, default: "", null: false
+    t.string   "edtclt",      limit: 20, default: "", null: false
+    t.string   "bank_j",      limit: 40, default: "", null: false
+    t.string   "bank_a",      limit: 40, default: "", null: false
+    t.string   "bank_k",      limit: 40, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "bank_j_copy",                                    default: "", null: false
+    t.string   "bank_j_copy",            default: "", null: false
+    t.integer  "bank_cd"
   end
-
-  add_index "bankms", ["bank_cd"], name: "index_bankms_on_bank_cd", unique: true, using: :btree
 
   create_table "banksms", id: false, force: true do |t|
     t.datetime "entdate"
