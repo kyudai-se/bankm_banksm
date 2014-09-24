@@ -39,9 +39,9 @@ class BankmsController < ApplicationController
     if !params[:bank_j_search].blank? && !params[:bank_cd_search].blank?
       @bankms = Bankm.where(["bank_j LIKE ? AND bank_cd LIKE ?", "%#{params[:bank_j_search]}%", "%#{params[:bank_cd_search]}%"])
     elsif !params[:bank_j_search].blank?
-      @bankms = Bankm.search(params[:bank_j_search]).sort_by{|bankm| (bankm.bank_cd.to_i)}
+      @bankms = Bankm.search(params[:bank_j_search]).sort_by{|bankm| (bankm.bank_cd)}
     elsif !params[:bank_cd_search].blank?
-      @bankms = Bankm.search(params[:bank_cd_search]).sort_by{|bankm| (bankm.bank_cd.to_i)}
+      @bankms = Bankm.search(params[:bank_cd_search]).sort_by{|bankm| (bankm.bank_cd)}
     else
       @bankms = Bankm.order("bank_cd ASC")
     end

@@ -2,12 +2,12 @@
 
 <%= form_tag bankms_path, :method => :get do %>
   <p>
-    名前検索フォーム
+    名前検索
     <%= autocomplete_field_tag :bank_j_search, params[:bank_j_search],
         autocomplete_bankm_bank_j_bankms_path, :autocomplete => "off" %>
   </p>
   <p>
-    番号検索フォーム
+    番号検索
     <%= autocomplete_field_tag :bank_cd_search, params[:bank_cd_search],
         autocomplete_bankm_bank_cd_bankms_path, :autocomplete => "off",
         :size => 5, style: "ime-mode:disabled" %>
@@ -16,4 +16,5 @@
     <%= submit_tag "検索" %>
   </p>
 <% end %>
+
 <%= link_to '銀行新規登録', new_bankm_path %>
