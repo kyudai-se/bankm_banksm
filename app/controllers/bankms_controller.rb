@@ -1,15 +1,13 @@
 require 'date'
 class BankmsController < ApplicationController
   before_action :set_bankm, only: [:show, :edit, :update, :destroy]
-  autocomplete  :bankm, :bank_j, :full => true, :order => "bank_cd",
-                :limit => 1000
-  autocomplete  :bankm, :bank_cd, :full => true, :order => "bank_cd",
-                :limit => 1000
+  autocomplete  :bankm, :bank_j,  :full => true, :limit => 1000
+  autocomplete  :bankm, :bank_cd, :full => true, :limit => 1000
+              { :order => :bank_cd }
   def auto_complete_for_bankm_bank_j
     find_options = { 
       :conditions => [ "bank_j LIKE ?",
                        '%' + params[:bankm][:bank_j].downcase + '%' ], 
-      :order => "bank_cd ASC",
       :limit => 1000
     }
     @bankms = Bankm.find(:all, find_options)
@@ -20,7 +18,6 @@ class BankmsController < ApplicationController
     find_options = {
       :conditions => [ "bank_cd LIKE ?",
                        '%' + params[:bankm][:bank_cd].downcase + '%' ],
-      :order => "bank_cd ASC",
       :limit => 1000
     }
     @bankms = Bankm.find(:all, find_options)
@@ -39,9 +36,9 @@ class BankmsController < ApplicationController
     if !params[:bank_j_search].blank? && !params[:bank_cd_search].blank?
       @bankms = Bankm.where(["bank_j LIKE ? AND bank_cd LIKE ?", "%#{params[:bank_j_search]}%", "%#{params[:bank_cd_search]}%"])
     elsif !params[:bank_j_search].blank?
-      @bankms = Bankm.search(params[:bank_j_search]).order('bank_cd')
+      @bankms = Bankm.search(params[:bank_j_search]).sort_by{|bankm| (bankm.bank_cd.to_i)}
     elsif !params[:bank_cd_search].blank?
-      @bankms = Bankm.search(params[:bank_cd_search]).order('bank_cd')
+      @bankms = Bankm.search(params[:bank_cd_search]).sort_by{|bankm| (bankm.bank_cd.to_i)}
     else
       render action: 'search'
     end
