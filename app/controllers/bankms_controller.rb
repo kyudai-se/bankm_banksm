@@ -43,7 +43,7 @@ class BankmsController < ApplicationController
     elsif !params[:bank_cd_search].blank?
       @bankms = Bankm.search(params[:bank_cd_search]).sort_by{|bankm| (bankm.bank_cd.to_i)}
     else
-      render action: 'search'
+      @bankms = Bankm.order("bank_cd ASC")
     end
   end
 
