@@ -1,11 +1,11 @@
 require 'date'
 class BankmsController < ApplicationController
   before_action :set_bankm, only: [:show, :edit, :update, :destroy]
-  before_action :bank_params, only: [:new, :create, :edit, :update]
   autocomplete  :bankm, :bank_j,  :full => true, :limit => 1000,
                 :order => :bank_cd
   autocomplete  :bankm, :bank_cd, :full => true, :limit => 1000,
                 :order => :bank_cd
+
   def auto_complete_for_bankm_bank_j
     find_options = { 
       :conditions => [ "bank_j LIKE ?",
@@ -27,12 +27,6 @@ class BankmsController < ApplicationController
     @bankms = Bankm.find(:all, find_options)
     render :partial => 'auto_complete_for_bank_CD'
   end
-
-  def bank_params
-    {:bank_j_search  => params[:bank_j_search],
-     :bank_cd_search => params[:bank_cd_search]}
-  end
-  helper_method :bank_params
 
   # GET /bankms
   # GET /bankms.json
@@ -67,8 +61,6 @@ class BankmsController < ApplicationController
   # POST /bankms
   # POST /bankms.json
   def create
-    puts params[:bank_j_search]
-    puts params[:bank_cd_search]
     @bankm = Bankm.new(bankm_params)
     @bankm.entdate = Time.now
     respond_to do |format|
@@ -85,8 +77,6 @@ class BankmsController < ApplicationController
   # PATCH/PUT /bankms/1
   # PATCH/PUT /bankms/1.json
   def update
-    puts params[:bank_j_search]
-    puts params[:bank_cd_search]
     @bankm.edtdate = Time.now
     respond_to do |format|
       if @bankm.update(bankm_params)
