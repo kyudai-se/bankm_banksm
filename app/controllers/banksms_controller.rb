@@ -37,7 +37,7 @@ class BanksmsController < ApplicationController
     @banksm.entdate = Time.now
     respond_to do |format|
       if @banksm.save
-        format.html { redirect_to bankm_banksm_url(@bankm, @banksm, bank_params), notice: 'Banksm was successfully created.' }
+        format.html { redirect_to bankm_banksm_url(@bankm, @banksm, bank_params), notice: '新規登録が正しく行われました' }
         format.json { render json: @banksm, status: :created, location: @banksm }
       else
         format.html { render action: 'new' }
@@ -57,7 +57,7 @@ class BanksmsController < ApplicationController
     @banksm.banks_ed_copy = @banksm.banks_ed
     respond_to do |format|
       if @banksm.update(banksm_params)
-        format.html { redirect_to bankm_banksm_url(@bankm, @banksm, bank_params), notice: 'Banksm was successfully updated.' }
+        format.html { redirect_to bankm_banksm_url(@bankm, @banksm, bank_params), notice: '更新が正しく行われました' }
         format.json { head :no_content }
       else
         @banksm.bank_cd = @banksm.bank_cd_copy

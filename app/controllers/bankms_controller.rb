@@ -40,7 +40,7 @@ class BankmsController < ApplicationController
     elsif !params[:bank_cd_search].blank?
       @bankms = Bankm.search(params[:bank_cd_search]).sort_by{|bankm| (bankm.bank_cd)}
     else
-      @bankms = Bankm.order("bank_cd ASC")
+      redirect_to root_path, notice: '検索する銀行名か番号を入力してください'
     end
   end
 
@@ -65,7 +65,8 @@ class BankmsController < ApplicationController
     @bankm.entdate = Time.now
     respond_to do |format|
       if @bankm.save
-        format.html { redirect_to bankm_url(@bankm, bank_params), notice: '新規登録が行われました' }
+        format.html { redirect_to bankm_url(@bankm, bank_params),
+                      notice: '新規登録が正しく行われました' }
         format.json { render action: 'show', status: :created, location: @bankm }
       else
         format.html { render action: 'new' }
@@ -80,7 +81,8 @@ class BankmsController < ApplicationController
     @bankm.edtdate = Time.now
     respond_to do |format|
       if @bankm.update(bankm_params)
-        format.html { redirect_to bankm_url(@bankm, bank_params), notice: '銀行の編集が行われました' }
+        format.html { redirect_to bankm_url(@bankm, bank_params),
+　　　　　　　　　　　notice: '更新が正しくが行われました' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
