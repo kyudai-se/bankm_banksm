@@ -31,7 +31,7 @@
         <td><%= link_to '銀行詳細', bankm_path(bankm, bank_params) %></td>
         <td><%= link_to '支店確認', bankm_banksms_path(bankm, bank_params) %></td>
         <td><%= link_to '編集', edit_bankm_path(bankm, bank_params) %></td>
-        <td><%= link_to '削除', bankm, method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
+        <td><%= link_to '削除', bankm_path(bankm, bank_params), method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
       </tr>
     <% end %>
   </tbody>

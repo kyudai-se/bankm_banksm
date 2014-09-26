@@ -65,7 +65,7 @@ class BankmsController < ApplicationController
     @bankm.entdate = Time.now
     respond_to do |format|
       if @bankm.save
-        format.html { redirect_to @bankm, notice: '新規登録が行われました' }
+        format.html { redirect_to bankm_url(@bankm, bank_params), notice: '新規登録が行われました' }
         format.json { render action: 'show', status: :created, location: @bankm }
       else
         format.html { render action: 'new' }
@@ -80,7 +80,7 @@ class BankmsController < ApplicationController
     @bankm.edtdate = Time.now
     respond_to do |format|
       if @bankm.update(bankm_params)
-        format.html { redirect_to @bankm, notice: '銀行の編集が行われました' }
+        format.html { redirect_to bankm_url(@bankm, bank_params), notice: '銀行の編集が行われました' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -94,7 +94,7 @@ class BankmsController < ApplicationController
   def destroy
     @bankm.destroy
     respond_to do |format|
-      format.html { redirect_to bankms_url }
+      format.html { redirect_to bankms_url(bank_params) }
       format.json { head :no_content }
     end
   end
