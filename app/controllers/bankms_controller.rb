@@ -1,6 +1,7 @@
 require 'date'
 class BankmsController < ApplicationController
   before_action :set_bankm, only: [:show, :edit, :update, :destroy]
+  before_action :bank_params, only: [:new, :create, :edit, :update]
   autocomplete  :bankm, :bank_j,  :full => true, :limit => 1000,
                 :order => :bank_cd
   autocomplete  :bankm, :bank_cd, :full => true, :limit => 1000,
@@ -37,7 +38,9 @@ class BankmsController < ApplicationController
   # GET /bankms.json
   def index
     if !params[:bank_j_search].blank? && !params[:bank_cd_search].blank?
-      @bankms = Bankm.where(["bank_j LIKE ? AND bank_cd LIKE ?", "%#{params[:bank_j_search]}%", "%#{params[:bank_cd_search]}%"])
+      @bankms = Bankm.where(["bank_j LIKE ? AND bank_cd LIKE ?",
+                             "%#{params[:bank_j_search]}%",
+                             "%#{params[:bank_cd_search]}%"])
     elsif !params[:bank_j_search].blank?
       @bankms = Bankm.search(params[:bank_j_search]).sort_by{|bankm| (bankm.bank_cd)}
     elsif !params[:bank_cd_search].blank?
@@ -64,6 +67,8 @@ class BankmsController < ApplicationController
   # POST /bankms
   # POST /bankms.json
   def create
+    puts params[:bank_j_search]
+    puts params[:bank_cd_search]
     @bankm = Bankm.new(bankm_params)
     @bankm.entdate = Time.now
     respond_to do |format|
@@ -80,6 +85,8 @@ class BankmsController < ApplicationController
   # PATCH/PUT /bankms/1
   # PATCH/PUT /bankms/1.json
   def update
+    puts params[:bank_j_search]
+    puts params[:bank_cd_search]
     @bankm.edtdate = Time.now
     respond_to do |format|
       if @bankm.update(bankm_params)

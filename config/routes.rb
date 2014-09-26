@@ -6,6 +6,7 @@ BankmBanksm::Application.routes.draw do
     get :autocomplete_bankm_bank_j, :on => :collection
     get :autocomplete_bankm_bank_cd, :on => :collection
     get 'search_cd' => 'bankms#search_cd'
+    get :bank_params
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

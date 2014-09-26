@@ -46,7 +46,9 @@
   </div>
 
   <div class="actions">
-    <%= f.submit() %>
+    <%= f.hidden_field :bank_params, :value => { :bank_cd_search => params[:bank_cd_search],
+                       :bank_j_search => params[:bank_j_search] } %>
+    <%= f.submit %>
   </div>
 <% end %>
 <%= link_to '検索結果に戻る', bankms_path(bank_params) %>
