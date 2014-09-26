@@ -2,12 +2,6 @@ require 'date'
 class BanksmsController < ApplicationController
   before_action :set_banksm, only: [:show, :edit, :update, :destroy]
 
- def bank_params
-    {:bank_j_search  => params[:bank_j_search],
-     :bank_cd_search => params[:bank_cd_search]}
-  end
-  helper_method :bank_params
-
   # GET /banksms
   # GET /banksms.json
   def index
@@ -43,7 +37,7 @@ class BanksmsController < ApplicationController
     @banksm.entdate = Time.now
     respond_to do |format|
       if @banksm.save
-        format.html { redirect_to bankm_banksm_url(@bankm, @banksm), notice: 'Banksm was successfully created.' }
+        format.html { redirect_to bankm_banksm_url(@bankm, @banksm, bank_params), notice: 'Banksm was successfully created.' }
         format.json { render json: @banksm, status: :created, location: @banksm }
       else
         format.html { render action: 'new' }
@@ -63,7 +57,7 @@ class BanksmsController < ApplicationController
     @banksm.banks_ed_copy = @banksm.banks_ed
     respond_to do |format|
       if @banksm.update(banksm_params)
-        format.html { redirect_to bankm_banksm_url(@bankm, @banksm), notice: 'Banksm was successfully updated.' }
+        format.html { redirect_to bankm_banksm_url(@bankm, @banksm, bank_params), notice: 'Banksm was successfully updated.' }
         format.json { head :no_content }
       else
         @banksm.bank_cd = @banksm.bank_cd_copy
@@ -82,7 +76,7 @@ class BanksmsController < ApplicationController
     @banksm = @bankm.banksms.find(params[:id])
     @banksm.destroy
     respond_to do |format|
-      format.html { redirect_to bankm_banksms_url }
+      format.html { redirect_to bankm_banksms_url(bank_params) }
       format.json { head :no_content }
     end
   end

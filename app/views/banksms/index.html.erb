@@ -35,7 +35,7 @@
         <td><%= banksm.banks_k %></td>
         <td><%= link_to '詳細', bankm_banksm_path(@bankm, banksm, bank_params) %></td>
         <td><%= link_to '編集', edit_bankm_banksm_path(@bankm, banksm, bank_params) %></td>
-        <td><%= link_to '削除', [@bankm, banksm], method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
+        <td><%= link_to '削除', bankm_banksm_path(@bankm, banksm, bank_params), method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
       </tr>
     <% end %>
   </tbody>

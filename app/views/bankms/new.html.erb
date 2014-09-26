@@ -46,8 +46,7 @@
   </div>
 
   <div class="actions">
-    <%= f.hidden_field :bank_params, :value => { :bank_cd_search => params[:bank_cd_search],
-                       :bank_j_search => params[:bank_j_search] } %>
+    <%= bank_params_hidden_field_tags %>
     <%= f.submit %>
   </div>
 <% end %>
