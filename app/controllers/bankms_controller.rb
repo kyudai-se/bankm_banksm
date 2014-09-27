@@ -34,11 +34,13 @@ class BankmsController < ApplicationController
     if !params[:bank_j_search].blank? && !params[:bank_cd_search].blank?
       @bankms = Bankm.where(["bank_j LIKE ? AND bank_cd LIKE ?",
                              "%#{params[:bank_j_search]}%",
-                             "%#{params[:bank_cd_search]}%"])
+                             "%#{params[:bank_cd_search]}%"]).sort_by{|bankm| (bankm.bank_cd)}
     elsif !params[:bank_j_search].blank?
       @bankms = Bankm.search(params[:bank_j_search]).sort_by{|bankm| (bankm.bank_cd)}
     elsif !params[:bank_cd_search].blank?
       @bankms = Bankm.search(params[:bank_cd_search]).sort_by{|bankm| (bankm.bank_cd)}
+    elsif !params[:bank_j_select].blank?
+      @bankms = Bankm.where("bank_j LIKE ?", "#{params[:bank_j_select]}").sort_by{|bankm| (bankm.bank_cd)}
     else
       redirect_to root_path, notice: '検索する銀行名か番号を入力してください'
     end
@@ -114,4 +116,3 @@ class BankmsController < ApplicationController
                                     :bank_cd, :bank_j, :bank_a, :bank_k)
     end
 end
-

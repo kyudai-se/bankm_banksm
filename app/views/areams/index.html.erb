@@ -1,0 +1,42 @@
+<h1>Listing areams</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>登録日時</th> 
+      <th>登録マシン</th> 
+      <th>登録ユーザー</th> 
+      <th>更新日時</th> 
+      <th>更新マシン</th> 
+      <th>更新ユーザー</th> 
+      <th>地区コード</th> 
+      <th>地区名</th> 
+      <th>地区名（略称）</th> 
+      <th>地区名（カナ）</th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @areams.each do |aream| %>      
+      <tr>
+        <td><%= aream.entdate.to_s(:db) %></td> 
+        <td><%= aream.entmcn %></td> 
+        <td><%= aream.entclt %></td> 
+        <td><%= aream.edtdate.try(:strftime,'%Y-%m-%d %H:%M:%S') %></td> 
+        <td><%= aream.edtmcn %></td> 
+        <td><%= aream.edtclt %></td> 
+        <td><%= aream.area_cd %></td> 
+        <td><%= aream.area_j %></td> 
+        <td><%= aream.area_a %></td> 
+        <td><%= aream.area_k %></td> 
+        <td><%= link_to 'Show', aream %></td>
+        <td><%= link_to 'Edit', edit_aream_path(aream) %></td>
+        <td><%= link_to 'Destroy', aream, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Aream', new_aream_path %>

@@ -1,0 +1,2 @@
+module AreamsHelper
+end

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>登録日時:</strong> 
+  <%= @aream.entdate.to_s(:db) %> 
+</p> 
+ 
+<p>
+  <strong>登録マシン:</strong> 
+  <%= @aream.entmcn %> 
+</p> 
+
+<p> 
+  <strong>登録ユーザー:</strong> 
+  <%= @aream.entclt %> 
+</p>  
+ 
+<p> 
+  <strong>更新日時:</strong> 
+  <%= @aream.edtdate.try(:strftime,'%Y-%m-%d %H:%M:%S') %> 
+</p> 
+ 
+<p> 
+  <strong>更新マシン:</strong> 
+  <%= @aream.edtmcn %> 
+</p> 
+ 
+<p> 
+  <strong>更新ユーザー:</strong> 
+  <%= @aream.edtclt %> 
+</p> 
+ 
+<p> 
+  <strong>地区コード:</strong> 
+  <%= @aream.area_cd %> 
+</p> 
+ 
+<p> 
+  <strong>地区名:</strong> 
+  <%= @aream.area_j %> 
+</p> 
+
+<p> 
+  <strong>地区名(略称):</strong> 
+  <%= @aream.area_a %> 
+</p> 
+ 
+<p> 
+  <strong>地区名(カナ):</strong> 
+  <%= @aream.area_k %> 
+</p> 
+
+<%= link_to 'Edit', edit_aream_path(@aream) %> |
+<%= link_to 'Back', areams_path %>

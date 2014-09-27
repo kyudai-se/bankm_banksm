@@ -1,0 +1,49 @@
+<%= form_for(@aream) do |f| %>
+  <% if @aream.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@aream.errors.count, "error") %> prohibited this aream from being saved:</h2>
+
+      <ul>
+      <% @aream.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field"> 
+    <%= f.label :登録マシン %><br> 
+    <%= f.text_field :entmcn %> 
+  </div> 
+  <div class="field"> 
+    <%= f.label :登録ユーザー %><br> 
+    <%= f.text_field :entclt %> 
+  </div> 
+  <div class="field"> 
+    <%= f.label :更新マシン %><br> 
+    <%= f.text_field :edtmcn %> 
+  <div class="field"> 
+    <%= f.label :更新ユーザー %><br> 
+    <%= f.text_field :edtclt %> 
+  </div> 
+  <div class="field"> 
+    <%= f.label :地区コード %><br> 
+    <%= f.text_field :area_cd, {style: "ime-mode:disabled"} %> 
+  </div> 
+  <div class="field"> 
+    <%= f.label :地区名 %><br> 
+    <%= f.text_field :area_j %> 
+  </div> 
+  <div class="field"> 
+    <%= f.label :地区名（略称） %><br> 
+    <%= f.text_field :area_a %> 
+  </div> 
+  <div class="field"> 
+    <%= f.label :地区名（カナ） %><br> 
+    <%= f.text_field :area_k %> 
+  </div> 
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

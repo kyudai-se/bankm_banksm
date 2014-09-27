@@ -1,0 +1,8 @@
+<h1>マスタ選択</h1>
+
+<%= form_for(@master_id) do |f| %>
+  <p>
+    マスタ選択
+    <%= f.collection_select :master_id, Master_id.all, :master_id, :master_name %>
+  </p>
+<% end %>
