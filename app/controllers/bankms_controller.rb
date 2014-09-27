@@ -41,8 +41,10 @@ class BankmsController < ApplicationController
       @bankms = Bankm.search(params[:bank_cd_search]).sort_by{|bankm| (bankm.bank_cd)}
     elsif !params[:bank_j_select].blank?
       @bankms = Bankm.where("bank_j LIKE ?", "#{params[:bank_j_select]}").sort_by{|bankm| (bankm.bank_cd)}
+    elsif !params[:bank_all].blank?
+      @bankms = Bankm.order("bank_cd")
     else
-      redirect_to root_path, notice: '検索する銀行名か番号を入力してください'
+      redirect_to root_path
     end
   end
 
